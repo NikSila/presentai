@@ -4,7 +4,7 @@ const config = {
   provider: process.env.API_PROVIDER || 'anthropic',
   anthropic: {
     apiKey: process.env.ANTHROPIC_API_KEY,
-    model: process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-5-20251001',
+    model: process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-5-20250514',
   },
   openai: {
     apiKey: process.env.OPENAI_API_KEY,

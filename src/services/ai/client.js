@@ -48,8 +48,9 @@ async function completeAnthropic({ system, user, images = [], maxTokens = 4096, 
 
   const messages = [{ role: 'user', content: userContent }];
 
-  // Prefill technique: start the assistant response with a known prefix
-  if (prefill) {
+  // Opus models do not support assistant message prefill
+  const supportsPrefill = !config.anthropic.model.includes('opus');
+  if (prefill && supportsPrefill) {
     messages.push({ role: 'assistant', content: prefill });
   }
 
@@ -65,8 +66,7 @@ async function completeAnthropic({ system, user, images = [], maxTokens = 4096, 
     throw new Error('No text response from Anthropic');
   }
 
-  // If we used a prefill, prepend it to the response so JSON parsers can find it
-  return prefill ? prefill + textBlock.text : textBlock.text;
+  return (prefill && supportsPrefill) ? prefill + textBlock.text : textBlock.text;
 }
 
 async function completeOpenAI({ system, user, images = [], maxTokens = 4096 }) {

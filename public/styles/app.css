@@ -41,9 +41,27 @@ body {
 .setup-view { overflow-y: auto; background: var(--bg); }
 
 .setup-header {
-  display: flex; align-items: center;
+  display: flex; align-items: center; justify-content: space-between;
   padding: 18px 32px;
   border-bottom: 1px solid var(--border);
+}
+
+.provider-switch {
+  display: flex; align-items: center; gap: 4px;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 8px; padding: 3px;
+}
+.provider-btn {
+  padding: 5px 14px; border-radius: 6px; border: none;
+  background: transparent; color: var(--text2);
+  font-size: 12px; font-weight: 600; font-family: inherit;
+  cursor: pointer; transition: all .15s;
+}
+.provider-btn:hover { color: var(--text); }
+.provider-btn.active { background: var(--accent); color: #fff; }
+.provider-model {
+  font-size: 10px; color: var(--text2); padding: 0 8px;
+  max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .logo, .editor-logo {
   display: flex; align-items: center; gap: 10px;
@@ -359,6 +377,7 @@ body {
 }
 .editor-status.loading { animation: pulse 1.4s infinite; }
 .editor-status.error { color: #fca5a5; }
+.editor-status.success { color: #86efac; }
 
 /* ════════════════════════════════════════
    ADD SLIDE MODAL

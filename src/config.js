@@ -8,7 +8,7 @@ const config = {
   },
   openai: {
     apiKey: process.env.OPENAI_API_KEY,
-    model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
+    model: process.env.OPENAI_MODEL || 'gpt-5-nano',
   },
   port: parseInt(process.env.PORT) || 3000,
   upload: {

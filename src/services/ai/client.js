@@ -72,28 +72,28 @@ async function completeAnthropic({ system, user, images = [], maxTokens = 4096, 
 async function completeOpenAI({ system, user, images = [], maxTokens = 4096 }) {
   const client = getOpenAIClient();
 
-  const userContent = [];
-
-  // Add text prompt first
-  userContent.push({ type: 'text', text: user });
-
-  // Add images in OpenAI format
-  for (const img of images) {
-    userContent.push({
-      type: 'image_url',
-      image_url: {
-        url: `data:${img.mediaType};base64,${img.data}`,
-        detail: 'high',
-      },
-    });
+  let content;
+  if (images.length) {
+    content = [{ type: 'text', text: user }];
+    for (const img of images) {
+      content.push({
+        type: 'image_url',
+        image_url: {
+          url: `data:${img.mediaType};base64,${img.data}`,
+          detail: 'high',
+        },
+      });
+    }
+  } else {
+    content = user;
   }
 
   const response = await client.chat.completions.create({
     model: config.openai.model,
-    max_tokens: maxTokens,
+    max_completion_tokens: maxTokens,
     messages: [
       { role: 'system', content: system },
-      { role: 'user', content: userContent },
+      { role: 'user', content },
     ],
   });
 

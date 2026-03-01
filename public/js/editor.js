@@ -35,6 +35,10 @@ function initProviderSwitch() {
     const btn = e.target.closest('.provider-btn');
     if (!btn) return;
     const provider = btn.dataset.provider;
+    if (provider === 'openai') {
+      setStatus('setup', 'GPT support is coming soon — stay tuned!', 'error');
+      return;
+    }
     try {
       const result = await api.setProvider(provider);
       updateProviderUI(result.provider, result.model);

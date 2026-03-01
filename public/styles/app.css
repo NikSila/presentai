@@ -59,6 +59,7 @@ body {
 }
 .provider-btn:hover { color: var(--text); }
 .provider-btn.active { background: var(--accent); color: #fff; }
+.provider-btn.disabled { opacity: .4; cursor: not-allowed; }
 .provider-model {
   font-size: 10px; color: var(--text2); padding: 0 8px;
   max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;

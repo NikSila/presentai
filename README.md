@@ -31,5 +31,5 @@ npm run dev
 ## Переменные окружения
 
 - `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` (по умолчанию claude-sonnet-4-20250514, опция claude-opus-4-6).
-- `OPENAI_API_KEY`, `OPENAI_MODEL` (по умолчанию gpt-4o-mini).
+- `OPENAI_API_KEY`, `OPENAI_MODEL` (по умолчанию gpt-5-nano).
 - `API_PROVIDER` — anthropic или openai.

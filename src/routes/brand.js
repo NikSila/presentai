@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import fs from 'fs';
 import uploadMiddleware from '../middleware/upload.js';
 import { analyzeBrand } from '../services/ai/brandAnalyzer.js';
 
@@ -14,15 +13,13 @@ router.post('/images', (req, res) => {
 
     try {
       const images = files.map((f) => ({
-        data: fs.readFileSync(f.path).toString('base64'),
+        data: f.buffer.toString('base64'),
         mediaType: f.mimetype,
       }));
       const brand = await analyzeBrand({ images });
       res.json(brand);
     } catch (e) {
       res.status(500).json({ error: e.message });
-    } finally {
-      files.forEach((f) => { try { fs.unlinkSync(f.path); } catch {} });
     }
   });
 });
